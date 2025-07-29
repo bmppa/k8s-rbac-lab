@@ -1,10 +1,10 @@
-## **Step-by-Step Scenario Creation for Testing RBAC in Kubernetes**
+## **Step-by-Step Scenario for Testing RBAC in Kubernetes**
 
 ### **Setup**
 
 Create two namespaces:
 
-```
+```sh
 kubectl create namespace dev-ns
 kubectl create namespace ops-ns
 ```
@@ -24,7 +24,7 @@ kubectl create serviceaccount ops-user -n ops-ns
 
 Create `dev-role.yaml`:
 
-```
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
