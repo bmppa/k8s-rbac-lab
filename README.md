@@ -11,7 +11,7 @@ kubectl create namespace ops-ns
 
 Create service accounts for users in each namespace:
 
-```
+```sh
 kubectl create serviceaccount dev-user -n dev-ns
 kubectl create serviceaccount ops-user -n ops-ns
 ```
@@ -38,7 +38,7 @@ rules:
 
 Apply:
 
-```
+```sh
 kubectl apply -f dev-role.yaml
 ```
 
@@ -46,7 +46,7 @@ kubectl apply -f dev-role.yaml
 
 Create `ops-role.yaml`:
 
-```
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -70,7 +70,7 @@ rules:
 
 Apply:
 
-```
+```sh
 kubectl apply -f ops-role.yaml
 ```
 
@@ -80,7 +80,7 @@ kubectl apply -f ops-role.yaml
 
 Create `rolebindings.yaml`:
 
-```
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -126,7 +126,7 @@ roleRef:
 
 Apply:
 
-```
+```sh
 kubectl apply -f rolebindings.yaml
 ```
 
@@ -158,7 +158,7 @@ Verify user permissions across two namespaces.
 
 Run tests using `kubectl auth can-i`:
 
-```
+```sh
 # dev-user in dev-ns
 kubectl auth can-i list pods --as=system:serviceaccount:dev-ns:dev-user -n dev-ns
 kubectl auth can-i list deployments --as=system:serviceaccount:dev-ns:dev-user -n dev-ns
@@ -179,7 +179,7 @@ kubectl auth can-i list pods --as=system:serviceaccount:ops-ns:ops-user -n dev-n
 
 ## **Cleanup**
 
-```
+```sh
 kubectl delete namespace dev-ns
 kubectl delete namespace ops-ns
 ```
