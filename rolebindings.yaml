@@ -1,0 +1,42 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: dev-ns
+  name: dev-binding
+subjects:
+- kind: ServiceAccount
+  name: dev-user
+  namespace: dev-ns
+roleRef:
+  kind: Role
+  name: dev-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: ops-ns
+  name: ops-binding
+subjects:
+- kind: ServiceAccount
+  name: ops-user
+  namespace: ops-ns
+roleRef:
+  kind: Role
+  name: ops-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: dev-ns
+  name: ops-readonly-binding
+subjects:
+- kind: ServiceAccount
+  name: ops-user
+  namespace: ops-ns
+roleRef:
+  kind: Role
+  name: ops-readonly
+  apiGroup: rbac.authorization.k8s.io
+
